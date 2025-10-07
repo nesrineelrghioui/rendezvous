@@ -45,7 +45,8 @@ security:
         - { path: ^/register, roles: PUBLIC_ACCESS }
         - { path: ^/dashboard, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/doctor, roles: ROLE_DOCTOR }
+        # protect only doctor-specific pages (e.g. /doctor/...), not the public /doctors listing
+        - { path: ^/doctor/, roles: ROLE_DOCTOR }
 
     role_hierarchy:
         ROLE_ADMIN: [ROLE_USER, ROLE_DOCTOR, ROLE_PATIENT]

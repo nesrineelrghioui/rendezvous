@@ -16,6 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -106,6 +107,23 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-check-input'
                 ]
             ]);
+
+        $builder->add('specialty', ChoiceType::class, [
+            'label' => 'Spécialité (pour les docteurs)',
+            'choices' => [
+                'Cardiologie' => 'Cardiologie',
+                'Ophtalmologie' => 'Ophtalmologie',
+                'Médecin généraliste' => 'Médecin généraliste',
+                'Neurologie' => 'Neurologie',
+                'Psychiatrie' => 'Psychiatrie',
+            ],
+            'required' => false,
+            'mapped' => false,
+            'placeholder' => 'Sélectionnez si vous êtes docteur',
+            'attr' => [
+                'class' => 'form-control'
+            ]
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

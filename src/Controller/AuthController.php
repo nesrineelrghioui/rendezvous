@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Entity\DoctorProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,6 +53,18 @@ class AuthController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+
+            // If user registered as doctor and provided a specialty, create DoctorProfile
+            if ($selectedRole === $user::ROLE_DOCTOR) {
+                $specialty = $form->get('specialty')->getData();
+                if ($specialty) {
+                    $profile = new DoctorProfile();
+                    $profile->setUser($user);
+                    $profile->setSpecialty($specialty);
+                    $entityManager->persist($profile);
+                    $entityManager->flush();
+                }
+            }
 
             $this->addFlash('success', 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter.');
             

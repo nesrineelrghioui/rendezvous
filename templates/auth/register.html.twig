@@ -81,10 +81,37 @@
                     {{ form_errors(registrationForm.agreeTerms) }}
                 </div>
 
+                <div class="mb-3" id="specialty-field" style="display:none">
+                    {{ form_label(registrationForm.specialty) }}
+                    {{ form_widget(registrationForm.specialty) }}
+                    {{ form_errors(registrationForm.specialty) }}
+                </div>
+
                 <button type="submit" class="btn btn-primary mb-3">
                     <i class="fas fa-user-plus me-2"></i>Créer mon compte
                 </button>
             {{ form_end(registrationForm) }}
+
+            <script>
+                (function(){
+                    const roleInputs = document.querySelectorAll('input[name="registrationForm[roles]"]');
+                    const specialtyDiv = document.getElementById('specialty-field');
+
+                    function updateSpecialty() {
+                        let selected = null;
+                        roleInputs.forEach(i => { if (i.checked) selected = i.value; });
+                        if (selected === '{{ constant('App\\Entity\\User::ROLE_DOCTOR') }}') {
+                            specialtyDiv.style.display = 'block';
+                        } else {
+                            specialtyDiv.style.display = 'none';
+                        }
+                    }
+
+                    roleInputs.forEach(i => i.addEventListener('change', updateSpecialty));
+                    // initialize
+                    updateSpecialty();
+                })();
+            </script>
 
             <div class="divider">
                 <span>Déjà inscrit ?</span>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Système de Gestion des Rendez-vous Hospitaliers
 
 ## Description
@@ -199,3 +200,6 @@ Pour toute question ou problème, créer une issue sur GitHub ou contacter l'éq
 **Équipe de développement** : 3 développeurs
 **Licence** : Propriétaire
 **Version** : 1.0.0
+=======
+# rendezvous
+>>>>>>> 5250d20dbb05afaf968c73b3927d1f0ab9d0273c

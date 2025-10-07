@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation RDV{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="alert alert-success">
+        Votre rendez-vous est confirmé.
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>Récapitulatif</h5>
+            <p><strong>Docteur :</strong> {{ appointment.doctor.user.fullName }} ({{ appointment.doctor.specialty }})</p>
+            <p><strong>Date :</strong> {{ appointment.startAt|date('d/m/Y') }}</p>
+            <p><strong>Heure :</strong> {{ appointment.startAt|date('H:i') }} - {{ appointment.endAt|date('H:i') }}</p>
+            <p><strong>Patient :</strong> {{ appointment.patient.fullName }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

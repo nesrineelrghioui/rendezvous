@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choisir une spécialité - Prendre RDV{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h3>Choisir une spécialité</h3>
+    <div class="list-group mt-4">
+        {% for s in specialties %}
+            <a href="{{ path('appointment_doctors', {'specialty': s}) }}" class="list-group-item list-group-item-action">{{ s }}</a>
+        {% else %}
+            <div class="alert alert-info">Aucune spécialité trouvée.</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

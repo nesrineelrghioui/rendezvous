@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon calendrier{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h3>Mes rendez-vous programmés</h3>
+
+    <div class="list-group mt-4">
+        {% for a in appointments %}
+            <div class="list-group-item">
+                <strong>{{ a.startAt|date('d/m/Y H:i') }}</strong> - {{ a.patient.fullName }}
+            </div>
+        {% else %}
+            <div class="alert alert-info">Aucun rendez-vous planifié.</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
